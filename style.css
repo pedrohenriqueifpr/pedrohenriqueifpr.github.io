@@ -1,0 +1,234 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #000;
+  color: #fff;
+}
+
+/* INDEX */
+.index {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.index-container {
+  text-align: center;
+  padding: 2rem;
+}
+
+.btn {
+  display: inline-block;
+  background: #2563eb;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #fff;
+  margin-top: 1.5rem;
+}
+
+.app-container {
+  height: 100vh;
+  max-width: 430px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background: #0f0f0f;
+}
+
+/* TELAS */
+.tela {
+  display: none;
+  padding: 1rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.tela.ativa {
+  display: block;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+
+/* DESCUBRIR */
+.pesquisa input {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: none;
+  background: #222;
+  color: white;
+}
+
+.conexoes {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.avatar {
+  width: 45px;
+  height: 45px;
+  background: #333;
+  border-radius: 50%;
+}
+
+.card {
+  background: #1a1a1a;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px 0 0 10px;
+}
+
+.card .info {
+  padding: 0.5rem 0;
+}
+
+#btnCriarGrupo {
+  width: 100%;
+  background: #2563eb;
+  padding: 1rem;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+/* CHATS */
+.chat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1a1a1a;
+  border-radius: 10px;
+  padding: 0.7rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+.chat-item .mini {
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* PERFIL */
+.perfil-container {
+  text-align: center;
+}
+
+.foto-perfil {
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.tags span {
+  background: #222;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+}
+
+/* CRIAR GRUPO */
+.form input, .form textarea {
+  width: 100%;
+  background: #1a1a1a;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+/* CHAT GRUPO */
+.mensagens {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.msg {
+  background: #1a1a1a;
+  padding: 0.6rem;
+  border-radius: 10px;
+  max-width: 80%;
+}
+
+.msg.eu {
+  background: #2563eb;
+  align-self: flex-end;
+}
+
+.input-msg {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+
+.input-msg input {
+  flex: 1;
+  border: none;
+  border-radius: 8px;
+  background: #222;
+  color: white;
+  padding: 0.5rem;
+}
+
+.input-msg button {
+  background: #2563eb;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  color: white;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  background: #111;
+  padding: 0.8rem 0;
+  border-top: 1px solid #222;
+}
+
+.navbar button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.3rem;
+}
+
+@media (min-width: 768px) {
+  .app-container {
+    height: 800px;
+    border-radius: 25px;
+    box-shadow: 0 0 20px #111;
+  }
+}
