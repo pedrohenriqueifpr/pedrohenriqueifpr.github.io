@@ -18,7 +18,6 @@
             overflow-x: hidden;
         }
 
-        /* Container principal - simula tela de celular */
         .phone-container {
             max-width: 430px;
             min-height: 100vh;
@@ -28,7 +27,6 @@
             box-shadow: 0 0 50px rgba(0,0,0,0.5);
         }
 
-        /* Página inicial */
         .welcome-page {
             display: flex;
             flex-direction: column;
@@ -68,7 +66,6 @@
             transform: scale(1.05);
         }
 
-        /* Header */
         .header {
             background: #1a1a1a;
             padding: 16px 20px;
@@ -99,7 +96,6 @@
             justify-content: center;
         }
 
-        /* Bottom Navigation */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -134,14 +130,12 @@
             color: #fff;
         }
 
-        /* Content */
         .content {
             padding: 20px;
             padding-bottom: 80px;
             min-height: calc(100vh - 60px);
         }
 
-        /* Conexões recomendadas */
         .connections {
             display: flex;
             gap: 12px;
@@ -162,7 +156,12 @@
             flex-shrink: 0;
         }
 
-        /* Search bar */
+        .search-bar-container {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
         .search-bar {
             background: #1a1a1a;
             border-radius: 12px;
@@ -170,7 +169,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            margin-bottom: 24px;
+            flex: 1;
         }
 
         .search-bar input {
@@ -182,7 +181,28 @@
             font-size: 16px;
         }
 
-        /* Grid de grupos */
+        .add-group-btn {
+            background: #4a90e2;
+            border: none;
+            color: #fff;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 24px;
+            font-weight: 300;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .add-group-btn:hover {
+            background: #357abd;
+            transform: scale(1.05);
+        }
+
         .groups-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -207,6 +227,16 @@
             height: 140px;
             object-fit: cover;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+        }
+
+        .group-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .group-info {
@@ -225,7 +255,6 @@
             line-height: 1.4;
         }
 
-        /* Lista de chats */
         .chat-list {
             display: flex;
             flex-direction: column;
@@ -251,6 +280,17 @@
             border-radius: 50%;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .chat-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
         }
 
         .chat-info {
@@ -273,7 +313,6 @@
             color: #666;
         }
 
-        /* Perfil */
         .profile-header {
             display: flex;
             flex-direction: column;
@@ -339,7 +378,6 @@
             background: #222;
         }
 
-        /* Chat de mensagens */
         .chat-messages {
             padding: 20px;
             padding-bottom: 80px;
@@ -434,7 +472,6 @@
             font-size: 20px;
         }
 
-        /* Criar grupo */
         .form-group {
             margin-bottom: 24px;
         }
@@ -468,6 +505,8 @@
             text-align: center;
             cursor: pointer;
             transition: border-color 0.2s;
+            position: relative;
+            overflow: hidden;
         }
 
         .image-upload:hover {
@@ -487,6 +526,13 @@
         .upload-subtext {
             font-size: 14px;
             color: #999;
+        }
+
+        .preview-image {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 8px;
+            margin-top: 12px;
         }
 
         .interests-grid {
@@ -534,6 +580,15 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
+
+        .upload-content {
+            transition: opacity 0.3s;
+        }
+
+        .has-image .upload-content {
+            opacity: 0;
+            position: absolute;
+        }
     </style>
 </head>
 <body>
@@ -563,9 +618,12 @@
                     <div class="connection-avatar"></div>
                 </div>
                 
-                <div class="search-bar">
-                    <span>🔍</span>
-                    <input type="text" placeholder="Pesquisar grupos">
+                <div class="search-bar-container">
+                    <div class="search-bar">
+                        <span>🔍</span>
+                        <input type="text" placeholder="Pesquisar grupos">
+                    </div>
+                    <button class="add-group-btn" onclick="showPage('criar-grupo')" title="Criar Grupo">+</button>
                 </div>
 
                 <div class="groups-grid" id="groupsGrid"></div>
@@ -645,10 +703,6 @@
                 </div>
 
                 <div class="profile-menu">
-                    <div class="menu-item" onclick="showPage('criar-grupo')">
-                        <span>➕ Criar Grupo</span>
-                        <span>→</span>
-                    </div>
                     <div class="menu-item">
                         <span>✏️ Editar Perfil</span>
                         <span>→</span>
@@ -682,7 +736,7 @@
         <!-- Página Criar Grupo -->
         <div id="criarGrupoPage" class="hidden">
             <div class="header">
-                <button class="back-btn" onclick="showPage('perfil')">✕</button>
+                <button class="back-btn" onclick="cancelCreateGroup()">✕</button>
                 <h1>Criar Grupo</h1>
                 <div style="width: 32px;"></div>
             </div>
@@ -694,10 +748,13 @@
 
                 <div class="form-group">
                     <label class="form-label">Imagem de Capa</label>
-                    <label class="image-upload" for="imageUpload">
-                        <input type="file" id="imageUpload" accept="image/*">
-                        <div class="upload-text">Adicionar Imagem</div>
-                        <div class="upload-subtext">Selecione uma imagem para representar seu grupo.</div>
+                    <label class="image-upload" id="imageUploadLabel" for="imageUpload">
+                        <input type="file" id="imageUpload" accept="image/*" onchange="previewImage(event)">
+                        <div class="upload-content">
+                            <div class="upload-text">Adicionar Imagem</div>
+                            <div class="upload-subtext">Selecione uma imagem para representar seu grupo.</div>
+                        </div>
+                        <img id="imagePreview" class="preview-image hidden" alt="Preview">
                     </label>
                 </div>
 
@@ -733,12 +790,15 @@
     </div>
 
     <script>
-        // Estado da aplicação
+        const groupEmojis = ['🎮', '🎵', '⚽', '📚', '🎨', '🎬', '💻', '🏀', '🎸', '📷'];
+        
         let groups = [
             {
                 id: 1,
                 name: 'Videogame Resenha',
                 description: 'Todo tipo de jogo, entre e chame a galera pra jogar e resenhar.',
+                emoji: '🎮',
+                image: null,
                 messages: [
                     { sender: 'Maria', text: 'Quem cola hoje?', time: '17:55' },
                     { sender: 'João', text: 'Depois das 20h consigo.', time: '17:55' }
@@ -748,6 +808,8 @@
                 id: 2,
                 name: 'Indie Music Lovers',
                 description: 'Compartilhe suas bandas indie favoritas e descubra novas músicas com outros entusiastas.',
+                emoji: '🎵',
+                image: null,
                 messages: [
                     { sender: 'Ana', text: 'Nova playlist aqui!', time: '17:55' }
                 ]
@@ -756,6 +818,8 @@
                 id: 3,
                 name: 'Futebol no Campus',
                 description: 'Junte-se a outros fãs de futebol para jogos casuais e discussões sobre partidas.',
+                emoji: '⚽',
+                image: null,
                 messages: [
                     { sender: 'Carlos', text: 'Confirmados p/ sexta?', time: '15:21' }
                 ]
@@ -764,6 +828,8 @@
                 id: 4,
                 name: 'Estudantes de Literatura',
                 description: 'Discuta seus livros favoritos, participe de clubes de leitura e compartilhe recomendações.',
+                emoji: '📚',
+                image: null,
                 messages: [
                     { sender: 'Juliana', text: 'Alguém viu o livro?', time: '14:10' }
                 ]
@@ -771,6 +837,7 @@
         ];
 
         let currentGroupId = null;
+        let uploadedImage = null;
 
         function enterApp() {
             document.getElementById('welcomePage').classList.add('hidden');
@@ -778,14 +845,12 @@
         }
 
         function showPage(page) {
-            // Esconder todas as páginas
             document.getElementById('descobrirPage').classList.add('hidden');
             document.getElementById('chatsPage').classList.add('hidden');
             document.getElementById('perfilPage').classList.add('hidden');
             document.getElementById('criarGrupoPage').classList.add('hidden');
             document.getElementById('chatPage').classList.add('hidden');
 
-            // Mostrar página solicitada
             if (page === 'descobrir') {
                 document.getElementById('descobrirPage').classList.remove('hidden');
                 renderGroups();
@@ -806,7 +871,9 @@
             const grid = document.getElementById('groupsGrid');
             grid.innerHTML = groups.map(group => `
                 <div class="group-card" onclick="openChat(${group.id})">
-                    <div class="group-image"></div>
+                    <div class="group-image">
+                        ${group.image ? `<img src="${group.image}" alt="${group.name}">` : group.emoji}
+                    </div>
                     <div class="group-info">
                         <div class="group-name">${group.name}</div>
                         <div class="group-description">${group.description}</div>
@@ -821,7 +888,9 @@
                 const lastMessage = group.messages[group.messages.length - 1];
                 return `
                     <div class="chat-item" onclick="openChat(${group.id})">
-                        <div class="chat-avatar"></div>
+                        <div class="chat-avatar">
+                            ${group.image ? `<img src="${group.image}" alt="${group.name}">` : group.emoji}
+                        </div>
                         <div class="chat-info">
                             <div class="chat-title">${group.name}</div>
                             <div class="chat-preview">${lastMessage ? lastMessage.text : 'Sem mensagens'}</div>
@@ -843,7 +912,7 @@
             const group = groups.find(g => g.id === currentGroupId);
             const messagesDiv = document.getElementById('chatMessages');
             
-            messagesDiv.innerHTML = group.messages.map((msg, index) => {
+            messagesDiv.innerHTML = group.messages.map((msg) => {
                 const isOwn = msg.sender === 'Pedro';
                 return `
                     <div class="message ${isOwn ? 'own' : ''}">
@@ -890,22 +959,45 @@
             element.classList.toggle('selected');
         }
 
+        function previewImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadedImage = e.target.result;
+                    const preview = document.getElementById('imagePreview');
+                    const label = document.getElementById('imageUploadLabel');
+                    preview.src = e.target.result;
+                    preview.classList.remove('hidden');
+                    label.classList.add('has-image');
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
         function createGroup() {
             const nameInput = document.getElementById('groupName');
             const name = nameInput.value.trim();
             
             if (name) {
+                const randomEmoji = groupEmojis[Math.floor(Math.random() * groupEmojis.length)];
                 const newGroup = {
                     id: groups.length + 1,
                     name: name,
                     description: 'Novo grupo criado',
+                    emoji: randomEmoji,
+                    image: uploadedImage,
                     messages: []
                 };
                 
                 groups.push(newGroup);
-                nameInput.value = '';
                 
-                // Resetar interesses
+                nameInput.value = '';
+                uploadedImage = null;
+                document.getElementById('imagePreview').classList.add('hidden');
+                document.getElementById('imageUploadLabel').classList.remove('has-image');
+                document.getElementById('imageUpload').value = '';
+                
                 document.querySelectorAll('.interest-tag').forEach(tag => {
                     tag.classList.remove('selected');
                 });
@@ -915,6 +1007,20 @@
             } else {
                 alert('Por favor, digite um nome para o grupo');
             }
+        }
+
+        function cancelCreateGroup() {
+            document.getElementById('groupName').value = '';
+            uploadedImage = null;
+            document.getElementById('imagePreview').classList.add('hidden');
+            document.getElementById('imageUploadLabel').classList.remove('has-image');
+            document.getElementById('imageUpload').value = '';
+            
+            document.querySelectorAll('.interest-tag').forEach(tag => {
+                tag.classList.remove('selected');
+            });
+            
+            showPage('descobrir');
         }
     </script>
 </body>
