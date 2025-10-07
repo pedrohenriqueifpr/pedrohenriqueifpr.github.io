@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UniSocial</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- ===== TELAS ===== -->
+    <div id="telas">
+
+      <!-- === DESCUBRIR === -->
+      <section id="descobrir" class="tela ativa">
+        <header>
+          <h2>Descobrir</h2>
+          <button id="btnConfig">⚙️</button>
+        </header>
+
+        <div class="pesquisa">
+          <input type="text" placeholder="Pesquisar grupos..." />
+        </div>
+
+        <h3>Conexões recomendadas</h3>
+        <div class="conexoes">
+          <div class="avatar"></div>
+          <div class="avatar"></div>
+          <div class="avatar"></div>
+          <div class="avatar"></div>
+          <div class="avatar"></div>
+        </div>
+
+        <div class="grupos">
+          <div class="card" onclick="abrirChat('Videogame Resenha')">
+            <img src="https://picsum.photos/200?1">
+            <div class="info">
+              <h4>Videogame Resenha</h4>
+              <p>Todo tipo de jogo, entre e resenhe.</p>
+            </div>
+          </div>
+          <div class="card" onclick="abrirChat('Indie Music Lovers')">
+            <img src="https://picsum.photos/200?2">
+            <div class="info">
+              <h4>Indie Music Lovers</h4>
+              <p>Compartilhe suas bandas favoritas.</p>
+            </div>
+          </div>
+          <div class="card" onclick="abrirChat('Futebol no Campus')">
+            <img src="https://picsum.photos/200?3">
+            <div class="info">
+              <h4>Futebol no Campus</h4>
+              <p>Junte-se a fãs de futebol.</p>
+            </div>
+          </div>
+        </div>
+
+        <button id="btnCriarGrupo">＋ Criar Grupo</button>
+      </section>
+
+      <!-- === CHATS === -->
+      <section id="chats" class="tela">
+        <header><h2>Chats</h2></header>
+        <div class="chat-list">
+          <div class="chat-item" onclick="abrirChat('Videogame Resenha')">
+            <img src="https://picsum.photos/60?1" class="mini">
+            <div><b>Videogame Resenha</b><p>Eu topo, tô entrando...</p></div>
+            <span>17:55</span>
+          </div>
+          <div class="chat-item" onclick="abrirChat('Indie Music Lovers')">
+            <img src="https://picsum.photos/60?2" class="mini">
+            <div><b>Indie Music Lovers</b><p>Nova playlist aqui!</p></div>
+            <span>17:55</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- === PERFIL === -->
+      <section id="perfil" class="tela">
+        <header><h2>Perfil</h2></header>
+        <div class="perfil-container">
+          <img src="https://picsum.photos/120" class="foto-perfil">
+          <h3>Pedro F.</h3>
+          <p>UniSocial<br>ADS</p>
+          <div class="tags">
+            <span>Persona</span>
+            <span>LoL</span>
+            <span>Indie Rock</span>
+            <span>Academia</span>
+          </div>
+          <button class="btn">Editar Perfil</button>
+          <button class="btn">Configurações</button>
+          <button class="btn sair">Sair da Conta</button>
+        </div>
+      </section>
+
+      <!-- === CRIAR GRUPO === -->
+      <section id="criarGrupo" class="tela">
+        <header><h2>Criar Grupo</h2></header>
+        <form class="form">
+          <label>Nome do Grupo</label>
+          <input type="text" placeholder="Nome do grupo" />
+          <label>Descrição</label>
+          <textarea rows="3" placeholder="Descreva seu grupo"></textarea>
+          <label>Imagem de capa</label>
+          <input type="file" />
+          <h4>Interesses</h4>
+          <div class="tags">
+            <span>Esportes</span><span>Música</span><span>Tecnologia</span>
+            <span>Artes</span><span>Jogos</span><span>Persona</span>
+          </div>
+          <button class="btn">Criar Grupo</button>
+        </form>
+      </section>
+
+      <!-- === CHAT DO GRUPO === -->
+      <section id="chatGrupo" class="tela">
+        <header>
+          <button onclick="voltarPara('chats')">⬅</button>
+          <h2 id="chatTitulo">Chat</h2>
+        </header>
+        <div class="mensagens" id="mensagens">
+          <div class="msg"><b>Maria:</b> Quem cola hoje?</div>
+          <div class="msg"><b>João:</b> Depois das 20h consigo.</div>
+          <div class="msg eu"><b>Pedro:</b> Eu topo, tô entrando já.</div>
+        </div>
+        <div class="input-msg">
+          <input type="text" placeholder="Digite uma mensagem..." />
+          <button>Enviar</button>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+      <button onclick="mostrarTela('descobrir')">🏠</button>
+      <button onclick="mostrarTela('chats')">💬</button>
+      <button onclick="mostrarTela('perfil')">👤</button>
+    </nav>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
