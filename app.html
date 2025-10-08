@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniSocial - App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="phone-container">
+        <!-- Página Descobrir -->
+        <div id="descobrirPage">
+            <div class="header">
+                <h1>Descobrir</h1>
+            </div>
+            <div class="content">
+                <div class="section-title">Conexões recomendadas</div>
+                <div class="connections">
+                    <div class="connection-avatar" style="background-image: url('imgs/pessoas/img1.png')"></div>
+                    <div class="connection-avatar" style="background-image: url('imgs/pessoas/img2.png')"></div>
+                    <div class="connection-avatar" style="background-image: url('imgs/pessoas/img3.png')"></div>
+                    <div class="connection-avatar" style="background-image: url('imgs/pessoas/img4.png')"></div>
+                    <div class="connection-avatar" style="background-image: url('imgs/pessoas/img5.png')"></div>
+                    <div class="connection-avatar" style="background-image: url('imgs/pessoas/img6.png')"></div>
+                </div>
+                
+                <div class="search-bar-container">
+                    <div class="search-bar">
+                        <span>🔍</span>
+                        <input type="text" placeholder="Pesquisar grupos">
+                    </div>
+                    <button class="add-group-btn" onclick="showPage('criar-grupo')" title="Criar Grupo">+</button>
+                </div>
+
+                <div class="groups-grid" id="groupsGrid"></div>
+            </div>
+            <div class="bottom-nav">
+                <a class="nav-item active" onclick="showPage('descobrir')">
+                    <span>🔍</span>
+                    <span>Descobrir</span>
+                </a>
+                <a class="nav-item" onclick="showPage('chats')">
+                    <span>💬</span>
+                    <span>Chats</span>
+                </a>
+                <a class="nav-item" onclick="showPage('perfil')">
+                    <span>👤</span>
+                    <span>Perfil</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Página Chats -->
+        <div id="chatsPage" class="hidden">
+            <div class="header">
+                <h1>Chats</h1>
+            </div>
+            <div class="content">
+                <div class="section-title">Suas conexões</div>
+                <div class="connections">
+                    <div class="connection-avatar" style="background-image: url('imgs/pessoas/img1.png')"></div>
+                    <div class="connection-avatar" style="background-image: url('imgs/pessoas/img2.png')"></div>
+                    <div class="connection-avatar" style="background-image: url('imgs/pessoas/img3.png')"></div>
+                    <div class="connection-avatar" style="background-image: url('imgs/pessoas/img4.png')"></div>
+                    <div class="connection-avatar" style="background-image: url('imgs/pessoas/img5.png')"></div>
+                    <div class="connection-avatar" style="background-image: url('imgs/pessoas/img6.png')"></div>
+                </div>
+
+                <div class="section-title">Seus grupos</div>
+                <div class="chat-list" id="chatList"></div>
+            </div>
+            <div class="bottom-nav">
+                <a class="nav-item" onclick="showPage('descobrir')">
+                    <span>🔍</span>
+                    <span>Descobrir</span>
+                </a>
+                <a class="nav-item active" onclick="showPage('chats')">
+                    <span>💬</span>
+                    <span>Chats</span>
+                </a>
+                <a class="nav-item" onclick="showPage('perfil')">
+                    <span>👤</span>
+                    <span>Perfil</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Página Perfil -->
+        <div id="perfilPage" class="hidden">
+            <div class="header">
+                <h1>Perfil</h1>
+            </div>
+            <div class="content">
+                <div class="profile-header">
+                    <div class="profile-avatar" style="background-image: url('imgs/pessoas/unisocial.png')"></div>
+                    <div class="profile-name">UniSocial</div>
+                    <div class="profile-subtitle">CEO</div>
+                    
+                    <div class="profile-tags">
+                        <div class="tag">Persona</div>
+                        <div class="tag">LOL</div>
+                        <div class="tag">Indie Rock</div>
+                        <div class="tag">Minecraft</div>
+                        <div class="tag">Clash Royale</div>
+                        <div class="tag">Programação</div>
+                        <div class="tag">Academia</div>
+                    </div>
+                </div>
+
+                <div class="profile-menu">
+                    <div class="menu-item">
+                        <span>✏️ Editar Perfil</span>
+                        <span>→</span>
+                    </div>
+                    <div class="menu-item">
+                        <span>⚙️ Configurações</span>
+                        <span>→</span>
+                    </div>
+                    <div class="menu-item">
+                        <span>🚪 Sair da Conta</span>
+                        <span>→</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-nav">
+                <a class="nav-item" onclick="showPage('descobrir')">
+                    <span>🔍</span>
+                    <span>Descobrir</span>
+                </a>
+                <a class="nav-item" onclick="showPage('chats')">
+                    <span>💬</span>
+                    <span>Chats</span>
+                </a>
+                <a class="nav-item active" onclick="showPage('perfil')">
+                    <span>👤</span>
+                    <span>Perfil</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Página Criar Grupo -->
+        <div id="criarGrupoPage" class="hidden">
+            <div class="header">
+                <button class="back-btn" onclick="cancelCreateGroup()">✕</button>
+                <h1>Criar Grupo</h1>
+                <div style="width: 32px;"></div>
+            </div>
+            <div class="content">
+                <div class="form-group">
+                    <label class="form-label">Nome do Grupo</label>
+                    <input type="text" class="form-input" id="groupName" placeholder="Digite o nome do grupo">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Imagem de Capa</label>
+                    <label class="image-upload" id="imageUploadLabel" for="imageUpload">
+                        <input type="file" id="imageUpload" accept="image/*" onchange="previewImage(event)">
+                        <div class="upload-content">
+                            <div class="upload-text">Adicionar Imagem</div>
+                            <div class="upload-subtext">Selecione uma imagem para representar seu grupo.</div>
+                        </div>
+                        <img id="imagePreview" class="preview-image hidden" alt="Preview">
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Interesses</label>
+                    <div class="interests-grid">
+                        <div class="interest-tag" onclick="toggleInterest(this)">Esportes</div>
+                        <div class="interest-tag" onclick="toggleInterest(this)">Música</div>
+                        <div class="interest-tag" onclick="toggleInterest(this)">Tecnologia</div>
+                        <div class="interest-tag" onclick="toggleInterest(this)">Artes</div>
+                        <div class="interest-tag" onclick="toggleInterest(this)">Jogos</div>
+                        <div class="interest-tag" onclick="toggleInterest(this)">Persona</div>
+                    </div>
+                </div>
+
+                <button class="create-btn" onclick="createGroup()">Criar Grupo</button>
+            </div>
+        </div>
+
+        <!-- Página Chat -->
+        <div id="chatPage" class="hidden">
+            <div class="header">
+                <button class="back-btn" onclick="showPage('chats')">←</button>
+                <h1 id="chatTitle">Grupo</h1>
+                <button class="call-btn">📞</button>
+            </div>
+            <div class="chat-messages" id="chatMessages"></div>
+            <div class="message-input">
+                <input type="text" id="messageInput" placeholder="Digite uma mensagem..." onkeypress="handleKeyPress(event)">
+                <button class="send-btn" onclick="sendMessage()">➤</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
